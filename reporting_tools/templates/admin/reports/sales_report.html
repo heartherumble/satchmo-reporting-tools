@@ -1,0 +1,69 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Sales report {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="../../">Home</a> &rsaquo;
+        Sales report
+    </div>
+{% endblock %}
+
+{% block extrahead %}
+	{{ block.super }}
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}reporting_tools/dataTables-1.5/media/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#sales').dataTable({
+				"bPaginate": true,
+				"bLengthChange": true,
+				"bFilter": true,
+				"bSort": true,
+				"bInfo": true,
+				"bAutoWidth": false });
+		} );
+	</script>
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}reporting_tools/dataTables-1.5/media/css/demo_table.css" />
+{% endblock %}
+
+{% block content %}
+    <div id="content-main">
+        <form action="" method="get">
+            {{ f.form.as_p }}
+            <input type="submit" />
+        </form>
+        <p><a href="{% url sales_report %}">reset</a></p>
+    	<table id="sales" class="display">
+    		<thead>
+    			<tr>
+    				<th>Order Number</th>
+                    <th>Contact Name</th>
+    				<th>Order total</th>
+    				<th>Order Status</th>
+    				<th>Order method</th>
+    				<th>Time of order</th>
+                </tr>
+    		</thead>
+    		<tbody>
+        	{% for obj in f %}
+    			<tr>
+    		        <td>{{ obj.id }}</td>
+                    <td>{{ obj.contact }}</td>
+    				<td>{{ obj.total|floatformat:"2" }}</td>
+    				<td>{{ obj.status }}</td>
+    				<td>{{ obj.method }}</td>
+    				<td>{{ obj.time_stamp|date:"m/d/y \a\t P" }}</td>
+    			</tr>
+    	    {% endfor %}
+    		</tbody>
+    		<tfoot>
+    			<tr>
+    				<td>Total sales</td>
+                    <td></td>
+    				<td colspan="4">${{ sales_total.order_total|floatformat:"2" }}</td>
+    			</tr>
+    		</tfoot>
+    	</table>
+    </div>
+{% endblock %}

@@ -1,0 +1,1 @@
+-e git+git://github.com/alex/django-filter.git#egg=django-filter

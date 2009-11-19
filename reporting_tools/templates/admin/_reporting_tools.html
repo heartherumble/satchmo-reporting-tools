@@ -1,0 +1,15 @@
+{% load i18n app_plugins %}
+<div class="module" id="report-helpers">
+	<h2 class="module-title">{% trans "Reporting Tools" %}</h2>
+	<div class="module-content">
+		<ul>
+	    	<li>
+				<a href="{% url sales_report %}">{% trans 'Sales report' %}</a><br/>
+			</li>
+			<li>
+	    		<a href="{% url satchmo_admin_edit_inventory %}">{% trans 'Inventory report' %}</a><br/>
+			</li>
+			{% plugin_point "reporting_tools" %}
+		</ul>
+	</div>
+</div>	
