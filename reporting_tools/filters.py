@@ -9,6 +9,7 @@ class OrderFilterSet(django_filters.FilterSet):
     class Meta:
         model = Order
         fields = ['status', 'method', 'time_stamp']
+        order_by = ('status')
 
     def __init__(self, *args, **kwargs):
         super(OrderFilterSet, self).__init__(*args, **kwargs)
