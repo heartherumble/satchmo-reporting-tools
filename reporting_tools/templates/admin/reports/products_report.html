@@ -23,7 +23,7 @@
 				"bSort": true,
 				"bInfo": true,
 				"bAutoWidth": false },
-				"aaSorting": [[2,'desc']]);
+				"aaSorting": [2,'desc']);
 		} );
 	</script>
 	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}reporting_tools/dataTables-1.5/media/css/demo_table.css" />
@@ -46,9 +46,9 @@
     			<tr>
     		        <td>{{ p.name }}</td>
     		        <td>{{ p.items_in_stock|floatformat }}</td>
-                    <td>{{ p.total_sales|currency }}</td>
-    				<td>{{ p.average_price|currency }}</td>
-    				<td>{{ p.unit_price|currency }}</td>
+                    <td>{{ p.total_sales|floatformat:"2" }}</td>
+    				<td>{{ p.average_price|floatformat:"2" }}</td>
+    				<td>{{ p.unit_price|floatformat:"2" }}</td>
     			</tr>
     	    {% endfor %}
     		</tbody>

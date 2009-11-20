@@ -51,7 +51,7 @@
     			<tr>
     		        <td>{{ obj.id }}</td>
                     <td>{{ obj.contact }}</td>
-    				<td>{{ obj.total|currency }}</td>
+    				<td>{{ obj.total|floatformat:"2" }}</td>
     				<td>{{ obj.status }}</td>
     				<td>{{ obj.method }}</td>
     				<td>{{ obj.time_stamp|date:"m/d/y \a\t P" }}</td>
@@ -62,7 +62,7 @@
     			<tr>
     				<td>Total sales</td>
                     <td></td>
-    				<td colspan="4">${{ sales_total.order_total|currency }}</td>
+    				<td colspan="4">${{ sales_total.order_total|floatformat:"2" }}</td>
     			</tr>
     		</tfoot>
     	</table>
