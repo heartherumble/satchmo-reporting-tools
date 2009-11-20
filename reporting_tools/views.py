@@ -18,6 +18,6 @@ def orders_report(request, template='admin/reports/orders_report.html'):
 	
 @staff_member_required
 def products_report(request, template='admin/reports/products_report.html'):
-    products = Product.objects.filter(total_sold__gt=0).order_by('-total_sold').annotate(average_price=Avg('orderitem__unit_price'), total_sales=Sum('orderitem__line_item_price'))[:10]
+    products = Product.objects.filter(total_sold__gt=0).order_by('-total_sold')[:10].annotate(average_price=Avg('orderitem__unit_price'), total_sales=Sum('orderitem__line_item_price'))
     ctx = {'products':products}
     return render_to_response(template, RequestContext(request, ctx))

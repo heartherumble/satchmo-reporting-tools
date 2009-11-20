@@ -42,13 +42,13 @@
                 </tr>
     		</thead>
     		<tbody>
-        	{% for obj in f %}
+        	{% for p in products %}
     			<tr>
-    		        <td>{{ obj.name }}</td>
-    		        <td>{{ obj.items_in_stock|floatformat }}</td>
-                    <td>{{ obj.total_sales|floatformat:"2" }}</td>
-    				<td>{{ obj.average_price|floatformat:"2" }}</td>
-    				<td>{{ obj.unit_price|floatformat:"2" }}</td>
+    		        <td>{{ p.name }}</td>
+    		        <td>{{ p.items_in_stock|floatformat }}</td>
+                    <td>{{ p.total_sales|floatformat:"2" }}</td>
+    				<td>{{ p.average_price|floatformat:"2" }}</td>
+    				<td>{{ p.unit_price|floatformat:"2" }}</td>
     			</tr>
     	    {% endfor %}
     		</tbody>
