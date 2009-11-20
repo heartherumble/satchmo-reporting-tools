@@ -1,4 +1,5 @@
 {% extends "admin/base_site.html" %}
+{% load satchmo_currency %}
 
 {% block title %}Products report {{ block.super }}{% endblock %}
 
@@ -32,6 +33,7 @@
     		<thead>
     			<tr>
     				<th>Product name</th>
+    				<th>Inventory</th>
                     <th>Total sales</th>
     				<th>Average price</th>
     				<th>Unit price</th>
@@ -41,9 +43,10 @@
         	{% for p in products %}
     			<tr>
     		        <td>{{ p.name }}</td>
-                    <td>{{ p.total_sales|floatformat:"2" }}</td>
-    				<td>{{ p.average_sales|floatformat:"2" }}</td>
-    				<td>{{ p.unit_price|floatformat:"2" }}</td>
+    		        <td>{{ p.items_in_stock|floatformat }}</td>
+                    <td>{{ p.total_sales|currency }}</td>
+    				<td>{{ p.average_price|currency }}</td>
+    				<td>{{ p.unit_price|currency }}</td>
     			</tr>
     	    {% endfor %}
     		</tbody>
