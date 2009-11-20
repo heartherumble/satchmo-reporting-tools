@@ -5,7 +5,7 @@ from django.template import RequestContext
 
 from product.models import Product
 
-from reporting_tools.filters import OrderFilterSet
+from reporting_tools.filters import OrderFilterSet, ProductFilterSet
 
 from satchmo_store.shop.models import Order, OrderItem
 
@@ -18,6 +18,7 @@ def orders_report(request, template='admin/reports/orders_report.html'):
 	
 @staff_member_required
 def products_report(request, template='admin/reports/products_report.html'):
-    products = Product.objects.filter(total_sold__gt=0).order_by('-total_sold').annotate(average_price=Avg('orderitem__unit_price'), total_sales=Sum('orderitem__line_item_price'))[:10]
-    ctx = {'products':products}
+    qs = Product.objects.all().order_by('-total_sold').annotate(average_price=Avg('orderitem__unit_price'), total_sales=Sum('orderitem__line_item_price'))
+    f = ProductFilterSet(request.GET, queryset=qs)
+    ctx = {'f':f}
     return render_to_response(template, RequestContext(request, ctx))
