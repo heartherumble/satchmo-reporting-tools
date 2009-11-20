@@ -1,11 +1,11 @@
 {% extends "admin/base_site.html" %}
 
-{% block title %}Sales report {{ block.super }}{% endblock %}
+{% block title %}Products report {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
     <div class="breadcrumbs">
         <a href="../../">Home</a> &rsaquo;
-        Sales report
+        Products report
     </div>
 {% endblock %}
 
@@ -19,7 +19,6 @@
 				"bPaginate": true,
 				"bLengthChange": true,
 				"bFilter": true,
-				"bSort": true,
 				"bInfo": true,
 				"bAutoWidth": false });
 		} );
@@ -29,41 +28,25 @@
 
 {% block content %}
     <div id="content-main">
-        <form action="" method="get">
-            {{ f.form.as_p }}
-            <input type="submit" />
-        </form>
-        <p><a href="{% url sales_report %}">reset</a></p>
     	<table id="sales" class="display">
     		<thead>
     			<tr>
-    				<th>Order Number</th>
-                    <th>Contact Name</th>
-    				<th>Order total</th>
-    				<th>Order Status</th>
-    				<th>Order method</th>
-    				<th>Time of order</th>
+    				<th>Product name</th>
+                    <th>Total sales</th>
+    				<th>Average price</th>
+    				<th>Unit price</th>
                 </tr>
     		</thead>
     		<tbody>
-        	{% for obj in f %}
+        	{% for p in products %}
     			<tr>
-    		        <td>{{ obj.id }}</td>
-                    <td>{{ obj.contact }}</td>
-    				<td>{{ obj.total|floatformat:"2" }}</td>
-    				<td>{{ obj.status }}</td>
-    				<td>{{ obj.method }}</td>
-    				<td>{{ obj.time_stamp|date:"m/d/y \a\t P" }}</td>
+    		        <td>{{ p.name }}</td>
+                    <td>{{ p.total_sales|floatformat:"2" }}</td>
+    				<td>{{ p.average_sales|floatformat:"2" }}</td>
+    				<td>{{ p.unit_price|floatformat:"2" }}</td>
     			</tr>
     	    {% endfor %}
     		</tbody>
-    		<tfoot>
-    			<tr>
-    				<td>Total sales</td>
-                    <td></td>
-    				<td colspan="4">${{ sales_total.order_total|floatformat:"2" }}</td>
-    			</tr>
-    		</tfoot>
     	</table>
     </div>
 {% endblock %}

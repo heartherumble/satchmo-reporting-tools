@@ -1,4 +1,7 @@
 import django_filters
+
+from product.models import Product
+
 from satchmo_store.shop.models import Order
 
 class OrderFilterSet(django_filters.FilterSet):
@@ -11,3 +14,8 @@ class OrderFilterSet(django_filters.FilterSet):
         super(OrderFilterSet, self).__init__(*args, **kwargs)
         self.filters['status'].field.choices.insert(0, ('','All',))
         self.filters['method'].field.choices.insert(0, ('','All',))
+
+class ProductFilterSet(django_filters.FilterSet):
+    class Meta:
+        model = Product
+        fields = ['name']
