@@ -42,7 +42,7 @@
                 </tr>
     		</thead>
     		<tbody>
-        	{% for obj in f|slice:":10" %}
+        	{% for obj in f %}
     			<tr>
     		        <td>{{ obj.name }}</td>
     		        <td>{{ obj.items_in_stock|floatformat }}</td>
