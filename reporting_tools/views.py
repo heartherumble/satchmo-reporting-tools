@@ -1,4 +1,5 @@
 from django.contrib.admin.views.decorators import staff_member_required
+from reporting_tools.filter import OrderFilterSet
 
 @staff_member_required
 def sales_report(request, template='admin/reports/sales_report.html'):
